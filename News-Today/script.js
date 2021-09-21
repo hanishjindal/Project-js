@@ -1,14 +1,8 @@
 let newsAccordion = document.getElementById("newsAccordion");
-let apiKey = "45af958f30f74fb5a59b1e7357dad277";
-let source = "the-hindu";
 let newsHtml = "";
 
 const xhr = new XMLHttpRequest();
-xhr.open(
-  "GET",
-  `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${apiKey}`,
-  true
-);
+xhr.open("GET", `news.json`, true);
 xhr.onreadystatechange = news2;
 xhr.send();
 
