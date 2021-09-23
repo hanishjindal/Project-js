@@ -35,7 +35,7 @@ function validateEmail() {
   }
 }
 function validatePhone() {
-  let reg = /^([\+0-9\s]){2,4}?[6-9]([0-9]){4}\s?([0-9]){5}$/;
+  let reg = /^(([\+0-9\s]){2,4})?[6-9]([0-9]){4}\s?([0-9]){5}$/;
   let str = phone.value;
   if (reg.test(str)) {
     phone.classList.remove("is-invalid");
