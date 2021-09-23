@@ -13,7 +13,7 @@ address.addEventListener("blur", validateAddress);
 submit.addEventListener("click", formSubmit);
 
 function validateUserName() {
-  let reg = /^([a-zA-Z]){3,16}$/;
+  let reg = /^([a-zA-Z]){3,16}\s([a-zA-Z]){3,16}/;
   let str = username.value;
   if (reg.test(str)) {
     username.classList.remove("is-invalid");
@@ -35,7 +35,7 @@ function validateEmail() {
   }
 }
 function validatePhone() {
-  let reg = /^[6-9]([0-9]){9}$/;
+  let reg = /^([\+0-9\s]){2,4}?[6-9]([0-9]){4}\s?([0-9]){5}$/;
   let str = phone.value;
   if (reg.test(str)) {
     phone.classList.remove("is-invalid");
