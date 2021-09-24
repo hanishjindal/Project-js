@@ -4,21 +4,44 @@ showNotes();
 function addNote(e) {
   let myNote = document.getElementById("floatingTextarea");
   let myTitle = document.getElementById("title");
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
+  if (myNote.value.length > 2 && myTitle.value.length > 2) {
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+      notesObj = [];
+    } else {
+      notesObj = JSON.parse(notes);
+    }
+    let myObj = {
+      title: myTitle.value,
+      text: myNote.value,
+    };
+    notesObj.push(myObj);
+    localStorage.setItem("notes", JSON.stringify(notesObj));
+    myNote.value = "";
+    myTitle.value = "";
+    show("success");
+    showNotes();
   } else {
-    notesObj = JSON.parse(notes);
+    show("warning");
   }
-  let myObj = {
-    title: myTitle.value,
-    text: myNote.value,
-  };
-  notesObj.push(myObj);
-  localStorage.setItem("notes", JSON.stringify(notesObj));
-  myNote.value = "";
-  myTitle.value = "";
-  showNotes();
+}
+
+function show(msg) {
+  document.getElementById("msg").innerHTML = `
+    <div class="alert alert-${msg} alert-dismissible fade show" role="alert">
+    <strong>${msg.toUpperCase()}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span onclick="hideMsg()" aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    `;
+  setTimeout(() => {
+    hideMsg();
+  }, 5000);
+}
+
+function hideMsg() {
+  document.getElementById("msg").innerHTML = "";
 }
 
 function showNotes() {
