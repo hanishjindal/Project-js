@@ -23,6 +23,7 @@ button {
   width: 65px;
   height: 45px;
   color: #fff;
+  border-radius: 15%;
 }
 
 button:hover {
